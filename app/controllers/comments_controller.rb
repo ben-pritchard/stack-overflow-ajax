@@ -50,8 +50,16 @@ class CommentsController < ApplicationController
     end
   end
 
+  def upvote
+    @comment = Comment.find(params[:comment_id])
+    @question = Question.find(@comment.question_id)
+    @comment.votes += 1
+    @comment.save
+    redirect_to question_path(@question)
+  end
+
 private
   def comment_params
-    params.require(:comment).permit(:answer, :user_id)
+    params.require(:comment).permit(:answer, :user_id, :votes)
   end
 end

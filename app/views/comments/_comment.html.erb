@@ -1,5 +1,8 @@
 <div class="well well-sm" id="comment_<%= comment.id %>">
-  <%= simple_format(comment.answer) %>
+  <span class="inline">
+    <%= link_to comment.votes, comment_upvote_path(comment), class: "btn btn-xs btn-succes", :data => { :method => "post"},  remote: true %>
+    <%= simple_format(comment.answer) %>
+  </span>
   - <%= comment.user.username %>
     <% if user_signed_in? && current_user.username == comment.user.username %>
       <%= link_to "Edit", edit_question_comment_path(@question, comment), remote: true %> |

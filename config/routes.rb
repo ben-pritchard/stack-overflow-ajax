@@ -8,4 +8,8 @@ Rails.application.routes.draw do
   resources :questions do
     resources :comments, :except => [:show, :index]
   end
+
+  resources :comments do
+    post 'upvote'
+  end
 end
