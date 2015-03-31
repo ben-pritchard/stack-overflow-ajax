@@ -11,12 +11,6 @@
 </div>
 
 <div id="comments">
-  <% if @comments.any? %>
-    <h3>Answers <small><%= link_to "Answer this question", new_question_comment_path(@question) %></small></h3>
+    <h3>Answers <small><%= link_to "Answer this question", new_question_comment_path(@question), remote: true %></small></h3>
     <%= render @question.comments %>
-  <% else %>
-    <div id='new_comment'>
-      <p><%= link_to "Be the first to answer this question", new_question_comment_path(@question), remote: true %></p>
-    </div>
-  <% end %>
 </div>
