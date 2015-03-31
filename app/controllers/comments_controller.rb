@@ -4,6 +4,7 @@ class CommentsController < ApplicationController
   def new
     @question = Question.find(params[:question_id])
     @comment = @question.comments.new
+
   end
 
   def create
@@ -11,7 +12,10 @@ class CommentsController < ApplicationController
     @comment = @question.comments.new(comment_params)
     if @comment.save
       flash[:notice] = "Your comment was successfully added"
-      redirect_to question_path(@comment.question)
+      respond_to do |format|
+        format.html { redirect_to question_path(@comment.question) }
+        format.js
+      end
     else
       render :new
     end

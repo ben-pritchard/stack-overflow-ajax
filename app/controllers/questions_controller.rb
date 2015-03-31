@@ -20,6 +20,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
+    sleep 1
     @question = Question.find(params[:id])
     @comments = @question.comments.all
   end
@@ -36,7 +37,7 @@ class QuestionsController < ApplicationController
     else
       render :edit
     end
-  end    
+  end
 
 private
   def question_params

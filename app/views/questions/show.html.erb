@@ -7,25 +7,16 @@
 <% end %>
 
 <div class="lead">
-  <%= simple_format(@question.post) %> 
+  <%= simple_format(@question.post) %>
 </div>
 
-<% if @comments.any? %>
-  <h3>Answers <small><%= link_to "Answer this question", new_question_comment_path(@question) %></small></h3>
-
-  <ul class="list-unstyled">
-    <% @comments.each do |comment| %>
-      <li class="well well-sm"><%= simple_format(comment.answer) %> <br />
-      - <%= comment.user.username %>
-        <% if user_signed_in? && current_user.username == comment.user.username %>
-          <%= link_to "Edit", edit_question_comment_path(@question, comment) %> |
-          <%= link_to "Delete", question_comment_path(@question, comment),
-                                :data => { :confirm => "You sure?",
-                                           :method => "delete"} %>
-        <% end %>
-      </li>
-    <% end %>
-  </ul>
-<% else %>
-  <p><%= link_to "Be the first to answer this question", new_question_comment_path(@question) %></p>
-<% end %>
+<div id="comments">
+  <% if @comments.any? %>
+    <h3>Answers <small><%= link_to "Answer this question", new_question_comment_path(@question) %></small></h3>
+    <%= render @question.comments %>
+  <% else %>
+    <div id='new_comment'>
+      <p><%= link_to "Be the first to answer this question", new_question_comment_path(@question), remote: true %></p>
+    </div>
+  <% end %>
+</div>

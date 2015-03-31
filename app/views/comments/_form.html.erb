@@ -1,20 +1,16 @@
-<%= render 'layouts/errors', :object => @comment %>
+<div id="comment_form">
+  <%= render 'layouts/errors', :object => @comment %>
 
-<%= form_for [@question, @comment], :html => {:class => "form-horizontal"} do |f| %>
-  <div class="form-group">
-    <%= f.hidden_field :user_id, :value => current_user.id %>
-  </div> 
-  <div class="form-group">
-    <%= f.label :answer, class: "control-label" %>
-    <%= f.text_area :answer, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.submit class: "btn btn-default" %>
-  </div>
-<% end %>
-
-<h3><%= @question.inquiry %></h3>
-
-<div class="lead">
-  <%= simple_format(@question.post) %>
+  <%= form_for [@question, @comment], :html => {:class => "form-horizontal"}, remote: true do |f| %>
+    <div class="form-group">
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+    </div>
+    <div class="form-group">
+      <%= f.label :answer, class: "control-label" %>
+      <%= f.text_area :answer, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.submit class: "btn btn-default" %>
+    </div>
+  <% end %>
 </div>

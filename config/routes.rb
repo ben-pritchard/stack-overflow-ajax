@@ -6,6 +6,6 @@ Rails.application.routes.draw do
   resources :profiles, param: :username, :only => :show
 
   resources :questions do
-    resources :comments
+    resources :comments, :except => [:show, :index]
   end
 end
