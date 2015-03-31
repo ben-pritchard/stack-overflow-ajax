@@ -1,0 +1,11 @@
+<div id="question">
+  <h1><%= @question.inquiry %><small> - <%= @question.user.username %></small></h1>
+
+  <% if user_signed_in? && current_user.username == @question.user.username %>
+    <%= link_to "Edit question", edit_question_path(@question), remote: true %>
+  <% end %>
+
+  <div class="lead">
+    <%= simple_format(@question.post) %>
+  </div>
+</div>

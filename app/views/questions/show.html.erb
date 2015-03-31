@@ -1,14 +1,6 @@
 <% content_for :title, "Question | StackOverflow" %>
 
-<h1><%= @question.inquiry %><small> - <%= @question.user.username %></small></h1>
-
-<% if user_signed_in? && current_user.username == @question.user.username %>
-  <%= link_to "Edit question", edit_question_path(@question) %>
-<% end %>
-
-<div class="lead">
-  <%= simple_format(@question.post) %>
-</div>
+<%= render('question') %>
 
 <div id="comments">
     <h3>Answers <small><%= link_to "Answer this question", new_question_comment_path(@question), remote: true %></small></h3>

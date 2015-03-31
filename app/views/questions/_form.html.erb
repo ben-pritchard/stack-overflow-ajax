@@ -1,18 +1,20 @@
-<%= render 'layouts/errors', :object => @question %>
+<div id="question_form">
+  <%= render 'layouts/errors', :object => @question %>
 
-<%= form_for @question, :html => {:class => "form-horizontal"} do |f| %>
-  <div class="form-group">
-    <%= f.hidden_field :user_id, :value => current_user.id %>
-  </div> 
-  <div class="form-group">
-    <%= f.label :inquiry, class: "control-label" %>
-    <%= f.text_field :inquiry, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :post, class: "control-label" %>
-    <%= f.text_area :post, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.submit class: "btn btn-default" %>
-  </div>
-<% end %>
+  <%= form_for @question, :html => {:class => "form-horizontal"}, remote: true do |f| %>
+    <div class="form-group">
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+    </div>
+    <div class="form-group">
+      <%= f.label :inquiry, class: "control-label" %>
+      <%= f.text_field :inquiry, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :post, class: "control-label" %>
+      <%= f.text_area :post, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.submit class: "btn btn-default" %>
+    </div>
+  <% end %>
+</div>
