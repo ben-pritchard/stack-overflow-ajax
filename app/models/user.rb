@@ -11,6 +11,6 @@ class User < ActiveRecord::Base
   after_create :send_welcome_message
 
   def send_welcome_message
-    UserMailer.registration_confirmation(self).deliver
+    UserMailer.registration_confirmation(self).deliver_now
   end
 end

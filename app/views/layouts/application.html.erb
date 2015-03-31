@@ -27,7 +27,7 @@
             <li><span class="navbar-text">Welcome, <%= link_to current_user.username, profile_path(current_user.username) %></span></li>
             <li><button type="button" class="btn btn-default navbar-btn"><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></button></li>
           <% else %>
-            <li><button type="button" class="btn btn-default navbar-btn"><%= link_to 'Sign in', new_user_session_path %></button></li>
+            <li><%= link_to 'Sign in', new_user_session_path, class: "btn btn-default navbar-btn" %></li>
           <% end %>
         </ul>
       </div>

@@ -1,8 +1,14 @@
 require 'rails_helper'
 
 describe 'the edit a question process' do
+  let(:user) {FactoryGirl.create(:user)}
+
+  before do
+    sign_in(user)
+  end
+
   it 'edits an inquiry' do
-    question = FactoryGirl.create(:question, :inquiry => "Help me")
+    question = FactoryGirl.create(:question, :inquiry => "Help me", :user_id => user.id)
     visit question_path(question)
     click_on 'Edit question'
     fill_in "Inquiry", :with => "I need help"
