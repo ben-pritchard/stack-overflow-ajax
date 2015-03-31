@@ -4,7 +4,6 @@ class CommentsController < ApplicationController
   def new
     @question = Question.find(params[:question_id])
     @comment = @question.comments.new
-
   end
 
   def create
@@ -30,8 +29,11 @@ class CommentsController < ApplicationController
     @question = Question.find(params[:question_id])
     @comment = @question.comments.find(params[:id])
     if @comment.update(comment_params)
-      redirect_to question_path(@question)
       flash[:notice] = "Comment successfully updated"
+      respond_to do |format|
+        format.html { redirect_to question_path(@question) }
+        format.js
+      end
     else
       render :edit
     end

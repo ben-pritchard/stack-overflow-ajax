@@ -2,7 +2,7 @@
   <%= simple_format(comment.answer) %>
   - <%= comment.user.username %>
     <% if user_signed_in? && current_user.username == comment.user.username %>
-      <%= link_to "Edit", edit_question_comment_path(@question, comment) %> |
+      <%= link_to "Edit", edit_question_comment_path(@question, comment), remote: true %> |
       <%= link_to "Delete", question_comment_path(@question, comment), remote: true,
                             :data => { :confirm => "You sure?",
                                        :method => "delete"} %>
