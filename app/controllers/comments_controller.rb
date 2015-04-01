@@ -55,7 +55,10 @@ class CommentsController < ApplicationController
     @question = Question.find(@comment.question_id)
     @comment.votes += 1
     @comment.save
-    redirect_to question_path(@question)
+    respond_to do |format|
+      format.html { redirect_to question_path(@question) }
+      format.js
+    end
   end
 
 private

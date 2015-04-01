@@ -1,6 +1,8 @@
 <div class="well well-sm" id="comment_<%= comment.id %>">
   <span class="inline">
-    <%= link_to comment.votes, comment_upvote_path(comment), class: "btn btn-xs btn-succes", :data => { :method => "post"},  remote: true %>
+    <span id="votes">
+      <%= link_to comment.votes, comment_upvote_path(comment), class: "btn btn-xs btn-succes", :data => { :method => "post"},  remote: true %>
+    </span>
     <%= simple_format(comment.answer) %>
   </span>
   - <%= comment.user.username %>
